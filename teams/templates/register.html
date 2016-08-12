@@ -1,0 +1,10 @@
+<form action="/test/", method="POST">
+    <table>
+        {% for field in form %}
+        <tr>
+            <td>{{ field.label }}:</td> <td>{{ field }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="Submit" />
+</form>
