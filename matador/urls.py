@@ -19,5 +19,5 @@ from teams.views import test_member
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
-    url(r'^test$', test_member),
+    url(r'^test/$', test_member),
 ]
