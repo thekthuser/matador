@@ -1,13 +1,16 @@
 {% extends "website/base.html" %}
 
 {% block content %}
-<h3>Info for {{ user.username }}</h3><br />
-Team: {{ user.team.name }}<br />
-{% if user.connoisseur %}
-    Is a connisseur
-{% else %}
-    Is not a connoisseur
-{% endif %}<br />
+<h3>
+    Info for {{ user.username }}: {{ user.team.name}}
+    <span title="Connoisseur status">
+        {% if user.connoisseur %}
+            &#x2713;
+        {% else %}
+            &#x2717;
+        {% endif %}
+    </span><br />
+</h3><br />
 --Edit User Info<br />
 --View Your Reviews<br />
 --View Your Visited Restuarants<br /><br />
