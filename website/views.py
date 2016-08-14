@@ -19,4 +19,4 @@ def register(request):
 
 @login_required(login_url = reverse_lazy('login'))
 def index(request):
-    return HttpResponse('logged in to index page')
+    return render(request, 'website/index.html')
