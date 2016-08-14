@@ -18,8 +18,10 @@ class RegisterForm(UserCreationForm):
         member.email = self.cleaned_data.get('email')
         member.phone = self.cleaned_data.get('phone')
         member.connoisseur = False
+
         testTeam = Team.objects.get(name='Team Valor')
         member.team = testTeam
+
         if commit:
             member.save()
         return member
