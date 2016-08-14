@@ -1,3 +1,6 @@
+{% if form.errors %}
+    <p>There was an error. Please try again.</p>
+{% endif %}
 <form action="/test/", method="POST">
     {% csrf_token %}
     <table>

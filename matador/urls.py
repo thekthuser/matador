@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from teams.views import test_member
+from teams.views import test_member, login_member, index
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url(r'^test/$', test_member),
+    url(r'^test_login/$', login, {'template_name': 'teams/login.html'}, name='login'),
+    url(r'^test_index/$', index),
+    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
 ]
