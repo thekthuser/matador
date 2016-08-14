@@ -1,3 +1,6 @@
+{% extends "website/base.html" %}
+
+{% block content %}
 {% if form.errors %}
     <p>There was an error. Please try again.</p>
 {% endif %}
@@ -12,3 +15,4 @@
     </table>
     <input type="submit" value="Submit" />
 </form>
+{% endblock %}
