@@ -10,10 +10,7 @@ class Team(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
-#class Member(models.Model):
 class Member(AbstractBaseUser):
-    #user = models.ForeignKey(User, unique=True)
-    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
@@ -22,5 +19,4 @@ class Member(AbstractBaseUser):
     team = models.ForeignKey(Team)
     
     USERNAME_FIELD = 'username'
-
     objects = UserManager()
