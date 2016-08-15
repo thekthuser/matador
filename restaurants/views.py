@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from restaurant.forms import AddRestaurantForm
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+from restaurants.forms import AddRestaurantForm
 
 # Create your views here.
 
