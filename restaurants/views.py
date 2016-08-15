@@ -9,7 +9,7 @@ from restaurants.forms import AddRestaurantForm
 @login_required(login_url = reverse_lazy('login'))
 def add_restaurant(request):
     if request.method == 'POST':
-        form = AddRestaurantForm(request.POST, user=request.user)
+        form = AddRestaurantForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'website/index.html')
