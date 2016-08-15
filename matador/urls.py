@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.auth.views import login, logout
 from website import views as website_views
 from teams import urls as teams_urls
+from restaurants import urls as res_urls
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
 
     url(r'^member/', include(teams_urls)),
+    url(r'^restaurant/', include(res_urls)),
 ]

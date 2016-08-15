@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from restuarants.models import Restaurant, Review, Visit
+from restaurants.models import Restaurant, Review, Visit
 from teams.models import Member
 import datetime
 
