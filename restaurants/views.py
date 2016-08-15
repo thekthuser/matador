@@ -20,5 +20,12 @@ def add_restaurant(request):
 
 @login_required(login_url = reverse_lazy('login'))
 def view_restaurants(request):
+    #restaurants = Restaurant.objects.all().filter(disliked=False)
     restaurants = Restaurant.objects.all()
     return render(request, 'restaurants/view_restaurants.html', {'restaurants': restaurants})
+
+@login_required(login_url = reverse_lazy('login'))
+def view_restaurant(request, pk):
+    restaurant = Restaurant.objects.get(id=pk)
+    return render(request, 'restaurants/view_restaurant.html', {'restaurant': restaurant})
+

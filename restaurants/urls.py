@@ -4,4 +4,5 @@ from restaurants import views as res_views
 urlpatterns = [
     url(r'^add_restaurant/', res_views.add_restaurant, name="add_restaurant"),
     url(r'^view_restaurants/', res_views.view_restaurants, name="view_restaurants"),
+    url(r'^view_restaurant/(?P<pk>\d+)', res_views.view_restaurant, name="view_restaurant"),
 ]

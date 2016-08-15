@@ -14,10 +14,13 @@ class Restaurant(models.Model):
 class Review(models.Model):
     restaurant = models.ForeignKey(Restaurant)
     member = models.ForeignKey(Member)
-    comment = models.TextField()
+    comment = models.TextField(unique=True)
+    disliked = models.BooleanField(default=False)
+    team = models.CharField(max_length=255)
     datetime = models.DateTimeField(auto_now=True)
 
 #record of visits so thumbsDown can be different for different teams
+#just realized i can put thumbsDown in the Review instead, will delete later
 class Visit(models.Model):
     restaurant = models.ForeignKey(Restaurant)
     team = models.ForeignKey(Team)
