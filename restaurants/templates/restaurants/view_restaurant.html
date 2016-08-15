@@ -3,5 +3,8 @@
 {% block content %}
     <h3>{{ restaurant.name }}</h3>
     {{ restaurant.description }}<br />
+    <a href="{% url 'add_review' pk=restaurant.id %}">
+        Add new review
+    </a><br />
     Reviews to follow
 {% endblock %}
