@@ -10,6 +10,9 @@ class Team(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
     description = models.TextField(blank=True)
 
+    def __unicode__(self):
+        return self.name
+
 class Member(AbstractBaseUser):
     username = models.CharField(max_length=255, unique=True, blank=False)
     password = models.CharField(max_length=255, blank=False)
@@ -20,3 +23,6 @@ class Member(AbstractBaseUser):
     
     USERNAME_FIELD = 'username'
     objects = UserManager()
+
+    def __unicode__(self):
+        return self.username

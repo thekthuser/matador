@@ -1,6 +1,9 @@
 {% extends "website/base.html" %}
 
 {% block content %}
+{% if success %}
+    <span style="color: #A8060E;">Your last action completed successfully.</span><br />
+{% endif %}
 <h3>
     Dashboard for {{ user.username }}: {{ user.team.name}}
     <span title="Connoisseur status">

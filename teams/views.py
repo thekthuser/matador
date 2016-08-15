@@ -10,7 +10,7 @@ def edit_member(request):
         form = EditMemberForm(request.POST, user=request.user)
         if form.is_valid():
             form.save()
-            return render(request, 'website/index.html')
+            return render(request, 'website/index.html', {'success': True})
     else:
         form = EditMemberForm(initial = {'key': 'value'})
     return render(request, 'teams/edit_member.html', {'form': form})
@@ -21,7 +21,7 @@ def add_team(request):
         form = AddTeamForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'website/index.html')
+            return render(request, 'website/index.html', {'success': True})
     else:
         form = AddTeamForm(initial = {'key': 'value'})
     return render(request, 'teams/add_team.html', {'form': form})

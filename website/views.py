@@ -11,7 +11,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('form saved')
+            return render(request, 'website/index.html', {'success': True})
     else:
         form = RegisterForm(initial = {'key': 'value'})
     return render(request, 'website/register.html', {'form': form})

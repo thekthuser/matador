@@ -17,10 +17,8 @@ class RegisterForm(UserCreationForm):
         member.username = self.cleaned_data.get('username')
         member.email = self.cleaned_data.get('email')
         member.phone = self.cleaned_data.get('phone')
+        #connoisseurs can add new restuarants
         member.connoisseur = self.cleaned_data.get('connoisseur')
-
-        #testTeam = Team.objects.get(name='Team Valor')
-        #member.team = testTeam
         member.team = self.cleaned_data.get('team')
 
         if commit:
