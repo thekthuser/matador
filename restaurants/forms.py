@@ -8,7 +8,7 @@ class AddRestaurantForm(ModelForm):
     
     class Meta:
         model = Restaurant
-        fields = ['name', 'description', 'address', 'latlon']
+        fields = ['name', 'description', 'address']
 
         def save(self, commit=True):
             res = super(AddRestaurantForm, self).save(commit=False)
