@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from restaurants.forms import AddRestaurantForm, AddReviewForm
-from restaurants.models import Restaurant
+from restaurants.models import Restaurant, Review
 from teams.models import Member
 
 # Create your views here.
@@ -28,7 +28,9 @@ def view_restaurants(request):
 @login_required(login_url = reverse_lazy('login'))
 def view_restaurant(request, pk):
     restaurant = Restaurant.objects.get(id=pk)
-    return render(request, 'restaurants/view_restaurant.html', {'restaurant': restaurant})
+    reviews = Review.objects.all().filter(restaurant=pk)
+    return render(request, 'restaurants/view_restaurant.html', \
+            {'restaurant': restaurant, 'reviews': reviews})
 
 
 @login_required(login_url = reverse_lazy('login'))

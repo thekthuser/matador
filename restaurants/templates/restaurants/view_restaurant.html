@@ -5,6 +5,9 @@
     {{ restaurant.description }}<br />
     <a href="{% url 'add_review' pk=restaurant.id %}">
         Add new review
-    </a><br />
-    Reviews to follow
+    </a><br /><br />
+    {% for review in reviews %}
+        {{ review.member.username }} says:<br />
+        {{ review.comment }}<br /><br />
+    {% endfor %}
 {% endblock %}
