@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from teams.forms import EditMemberForm
+from teams.forms import EditMemberForm, AddTeamForm
 
 # Create your views here.
 @login_required(login_url = reverse_lazy('login'))
@@ -14,3 +14,14 @@ def edit_member(request):
     else:
         form = EditMemberForm(initial = {'key': 'value'})
     return render(request, 'teams/edit_member.html', {'form': form})
+
+@login_required(login_url = reverse_lazy('login'))
+def add_team(request):
+    if request.method == 'POST':
+        form = AddTeamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'website/index.html')
+    else:
+        form = AddTeamForm(initial = {'key': 'value'})
+    return render(request, 'teams/add_team.html', {'form': form})

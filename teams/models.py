@@ -7,15 +7,15 @@ from django.contrib.auth.models import UserManager
 
 # Create your models here.
 class Team(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    description = models.TextField()
+    name = models.CharField(max_length=255, unique=True, blank=False)
+    description = models.TextField(blank=True)
 
 class Member(AbstractBaseUser):
-    username = models.CharField(max_length=255, unique=True)
-    password = models.CharField(max_length=255)
-    phone = models.CharField(max_length=255)
-    email = models.CharField(max_length=255, unique=True)
-    connoisseur = models.BooleanField()
+    username = models.CharField(max_length=255, unique=True, blank=False)
+    password = models.CharField(max_length=255, blank=False)
+    phone = models.CharField(max_length=255, blank=True)
+    email = models.CharField(max_length=255, unique=True, blank=False)
+    connoisseur = models.BooleanField(default=False)
     team = models.ForeignKey(Team)
     
     USERNAME_FIELD = 'username'

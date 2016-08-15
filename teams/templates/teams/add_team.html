@@ -4,7 +4,7 @@
 {% if form.errors %}
     <p>There was an error. Please try again.</p>
 {% endif %}
-<form action="/team/edit_member/", method="POST">
+<form action="/team/add_team/", method="POST">
     {% csrf_token %}
     <table>
         {% for field in form %}

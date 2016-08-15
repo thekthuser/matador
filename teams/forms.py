@@ -6,11 +6,10 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True)
 
     class Meta:
         model = Member
-        fields = ['username', 'phone', 'email']
+        fields = ['username', 'phone', 'email', 'team', 'connoisseur']
 
     def save(self, commit=True):
         member = super(RegisterForm, self).save(commit=False)
@@ -18,17 +17,17 @@ class RegisterForm(UserCreationForm):
         member.username = self.cleaned_data.get('username')
         member.email = self.cleaned_data.get('email')
         member.phone = self.cleaned_data.get('phone')
-        member.connoisseur = False
+        member.connoisseur = self.cleaned_data.get('connoisseur')
 
-        testTeam = Team.objects.get(name='Team Valor')
-        member.team = testTeam
+        #testTeam = Team.objects.get(name='Team Valor')
+        #member.team = testTeam
+        member.team = self.cleaned_data.get('team')
 
         if commit:
             member.save()
         return member
 
 class EditMemberForm(ModelForm):
-    email = forms.EmailField(required=True)
 
     class Meta:
         model = Member
@@ -46,3 +45,18 @@ class EditMemberForm(ModelForm):
 
         if commit:
             member.save()
+
+class AddTeamForm(ModelForm):
+
+    class Meta:
+        model = Team
+        fields = ['name', 'description']
+
+    def save(self, commit=True):
+        team = super(AddTeamForm, self).save(commit=False)
+        team.name = self.cleaned_data.get('name')
+        team.description = self.cleaned_data.get('description')
+
+        if commit:
+            team.save()
+        return team

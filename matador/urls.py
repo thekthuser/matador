@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^login/$', login, {'template_name': 'website/login.html'}, name='login'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
 
-    url(r'^member/', include(teams_urls)),
+    url(r'^team/', include(teams_urls)),
     url(r'^restaurant/', include(res_urls)),
 ]
