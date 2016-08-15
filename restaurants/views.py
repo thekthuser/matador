@@ -15,4 +15,4 @@ def add_restaurant(request):
             return render(request, 'website/index.html')
     else:
         form = AddRestaurantForm(initial = {'key': 'value'})
-    return render(request, 'restaurant/add_restaurant.html', {'form': form})
+    return render(request, 'restaurants/add_restaurant.html', {'form': form})
