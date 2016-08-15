@@ -5,18 +5,18 @@ from teams.models import Member, Team
 
 # Create your models here.
 class Restaurant(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    description = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    latlon = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True, blank=False)
+    description = models.CharField(max_length=255, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    latlon = models.CharField(max_length=255, blank=True)
     #timesVisited = models.IntegerField(max_length=255)
 
 class Review(models.Model):
-    restaurant = models.ForeignKey(Restaurant)
-    member = models.ForeignKey(Member)
-    comment = models.TextField(unique=True)
+    restaurant = models.ForeignKey(Restaurant, blank=False)
+    member = models.ForeignKey(Member, blank=False)
+    comment = models.TextField(unique=True, blank=True)
     disliked = models.BooleanField(default=False)
-    team = models.CharField(max_length=255)
+    team = models.CharField(max_length=255, blank=False)
     datetime = models.DateTimeField(auto_now=True)
 
 #record of visits so thumbsDown can be different for different teams
