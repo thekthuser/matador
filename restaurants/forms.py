@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from restaurants.models import Restaurant, Review, Visit
 from teams.models import Member
 import datetime
+from geopy.geocoders import Nominatim
 
 class AddRestaurantForm(ModelForm):
     
@@ -10,16 +11,24 @@ class AddRestaurantForm(ModelForm):
         model = Restaurant
         fields = ['name', 'description', 'address']
 
-        def save(self, commit=True):
-            res = super(AddRestaurantForm, self).save(commit=False)
-            res.name = self.cleaned_data.get('name')
-            res.description = self.cleaned_data.get('description')
-            res.address = self.cleaned_data.get('address')
-            #res.latlon
+    def save(self, commit=True):
+        res = super(AddRestaurantForm, self).save(commit=False)
+        res.name = self.cleaned_data.get('name')
+        res.description = self.cleaned_data.get('description')
+        res.address = self.cleaned_data.get('address')
+        
+        geolocator = Nominatim()
+        # .geocode returns None if address not found, but sometimes still geocodes bad addresses
+        # for example, it thinks the address 'bad address' is in dubai...
+        loc = geolocator.geocode(res.address)
+        if loc:
+            res.latlon = str(loc.latitude) + ',' + str(loc.longitude)
+        else:
+            res.latlon = None
 
-            if commit:
-                res.save()
-            return res
+        if commit:
+            res.save()
+        return res
 
 class AddReviewForm(ModelForm):
 

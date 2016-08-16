@@ -14,7 +14,7 @@ def add_restaurant(request):
         form = AddRestaurantForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'website/index.html')
+            return render(request, 'website/index.html', {'success': True})
     else:
         form = AddRestaurantForm(initial = {'key': 'value'})
     return render(request, 'restaurants/add_restaurant.html', {'form': form})

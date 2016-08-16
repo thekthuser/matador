@@ -8,7 +8,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
     description = models.CharField(max_length=255, blank=True)
     address = models.CharField(max_length=255, blank=True)
-    latlon = models.CharField(max_length=255, blank=True)
+    latlon = models.CharField(max_length=255, blank=False, null=True)
     #timesVisited = models.IntegerField(max_length=255)
 
 class Review(models.Model):
