@@ -1,9 +1,13 @@
 {% extends "website/base.html" %}
 
 {% block content %}
+
+Only connoisseurs can add restaurants.
+
 {% if form.errors %}
     <p>Your username and password did not match. Please try again.</p>
 {% endif %}
+
 <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}
     <table>
@@ -20,4 +24,5 @@
     <input type="submit" value="Login" />
     <input type="hidden" name="next" value="/" />
 </form>
+
 {% endblock %}

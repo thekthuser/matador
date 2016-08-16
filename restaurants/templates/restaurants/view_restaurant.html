@@ -7,7 +7,9 @@
         Add new review
     </a><br /><br />
     {% for review in reviews %}
-        {{ review.member.username }} says:<br />
-        {{ review.comment }}<br /><br />
+        <div style="margin-left: 2em;">
+            {{ review.member.username }} says:<br />
+            {{ review.comment }}<br /><br />
+        </div>
     {% endfor %}
 {% endblock %}

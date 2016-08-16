@@ -20,3 +20,6 @@ def register(request):
 @login_required(login_url = reverse_lazy('login'))
 def index(request):
     return render(request, 'website/index.html')
+
+def user_is_connoisseur(user):
+    return user.is_authenticated() and user.connoisseur
