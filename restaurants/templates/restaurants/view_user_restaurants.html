@@ -1,0 +1,11 @@
+
+{% extends "website/base.html" %}
+
+{% block content %}
+    {% for res in restaurants %}
+        <div style="margin-left: 2em;">
+            {{ res.name }}, located at {{ res.address }}<br />
+            {{ res.description }}<br /><br />
+        </div>
+    {% endfor %}
+{% endblock %}

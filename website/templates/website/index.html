@@ -17,7 +17,7 @@
 </h3><br />
 <a href="{% url 'edit_member' %}">Edit User Info</a><br /><br />
 <a href="{% url 'view_user_reviews' pk=user.id %}">View Your {{ review_count }} Reviews</a><br />
---View Your Visited Restaurants<br /><br />
+<a href="{% url 'view_user_restaurants' pk=user.id %}">View Your {{ res_count }} Visited Restaurants</a><br /><br />
 
 <a href="{% url 'add_restaurant' %}">Add Restaurant</a><br />
 <a href="{% url 'view_restaurants' %}">View Restaurants</a><br /><br />
