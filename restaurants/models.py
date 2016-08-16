@@ -19,10 +19,3 @@ class Review(models.Model):
     team = models.CharField(max_length=255, blank=False)
     datetime = models.DateTimeField(auto_now=True)
 
-#record of visits so thumbsDown can be different for different teams
-#just realized i can put thumbsDown in the Review instead, will delete later
-class Visit(models.Model):
-    restaurant = models.ForeignKey(Restaurant)
-    team = models.ForeignKey(Team)
-    thumbDown = models.BooleanField()
-    datetime = models.DateTimeField(auto_now=True)
