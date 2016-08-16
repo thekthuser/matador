@@ -34,7 +34,7 @@ class AddReviewForm(ModelForm):
 
     class Meta:
         model = Review
-        fields = ['comment']
+        fields = ['comment', 'disliked']
 
 
     #this is here so I can pass restaurant and member from the view
@@ -45,12 +45,10 @@ class AddReviewForm(ModelForm):
 
     def save(self, commit=True):
         review = super(AddReviewForm, self).save(commit=False)
-        #check if these can be saved directly instead of looking up with pk
-        #review.res = Restaurant.objects.get(pk=restauarant.id)
-        review.restaurant_id = self.restaurant.id
-        #review.member = Member.objects.get(pk=member.id)
+        review.restaurant = self.restaurant
         review.member = self.member
         review.comment = self.cleaned_data.get('comment')
+        review.disliked = self.cleaned_data.get('disliked')
         review.datetime = datetime.datetime.now()
 
         if commit:
