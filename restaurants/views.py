@@ -53,3 +53,8 @@ def add_review(request, pk):
     else:
         form = AddReviewForm(initial = {'key': 'value'})
     return render(request, 'restaurants/add_review.html', {'form': form, 'pk': pk})
+
+@login_required(login_url = reverse_lazy('login'))
+def view_user_reviews(request, pk):
+    reviews = Review.objects.all().filter(member=pk)
+    return render(request, 'restaurants/view_user_reviews.html', {'reviews': reviews})

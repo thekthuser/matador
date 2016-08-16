@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from teams.forms import RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
+from restaurants.models import Restaurant, Review
 
 # Create your views here.
 
@@ -19,7 +20,8 @@ def register(request):
 
 @login_required(login_url = reverse_lazy('login'))
 def index(request):
-    return render(request, 'website/index.html')
+    review_count = Review.objects.all().filter(member=request.user.id).count()
+    return render(request, 'website/index.html', {'review_count': review_count})
 
 def user_is_connoisseur(user):
     return user.is_authenticated() and user.connoisseur

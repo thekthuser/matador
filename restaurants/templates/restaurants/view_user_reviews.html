@@ -1,0 +1,10 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+    {% for review in reviews %}
+        <div style="margin-left: 2em;">
+            {{ review.member.username }} says about {{ review.restaurant.name }}:<br />
+            {{ review.comment }}<br /><br />
+        </div>
+    {% endfor %}
+{% endblock %}
