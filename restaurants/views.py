@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from restaurants.forms import AddRestaurantForm, AddReviewForm
 from restaurants.models import Restaurant, Review
 from teams.models import Member
+from django.db.models import Q
 
 # Create your views here.
 
@@ -25,8 +26,9 @@ def add_restaurant(request):
 
 @login_required(login_url = reverse_lazy('login'))
 def view_restaurants(request):
-    #restaurants = Restaurant.objects.all().filter(disliked=False)
-    restaurants = Restaurant.objects.all()
+    #get restaurants that haven't been downvoted by a team member
+    restaurants = Restaurant.objects.all().exclude(Q(review__disliked=True) & \
+        Q(review__member__team=request.user.team))
     return render(request, 'restaurants/view_restaurants.html', {'restaurants': restaurants})
 
 @login_required(login_url = reverse_lazy('login'))
