@@ -14,7 +14,11 @@ def add_restaurant(request):
         form = AddRestaurantForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'website/index.html', {'success': True})
+            # after add_restauarant, send to add_review to post first review
+            reviewForm = AddReviewForm()
+            addedRes = Restaurant.objects.get(name=form.cleaned_data.get('name'))
+            return render(request, 'restaurants/add_review.html', \
+                {'first': True, 'form': reviewForm, 'pk': addedRes.id})
     else:
         form = AddRestaurantForm(initial = {'key': 'value'})
     return render(request, 'restaurants/add_restaurant.html', {'form': form})
@@ -41,7 +45,7 @@ def add_review(request, pk):
         form = AddReviewForm(request.POST, restaurant=restaurant, member=request.user)
         if form.is_valid():
             form.save()
-            return render(request, 'website/index.html')
+            return render(request, 'website/index.html', {'success': True})
     else:
         form = AddReviewForm(initial = {'key': 'value'})
     return render(request, 'restaurants/add_review.html', {'form': form, 'pk': pk})
