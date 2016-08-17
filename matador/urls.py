@@ -29,4 +29,6 @@ urlpatterns = [
 
     url(r'^team/', include(teams_urls)),
     url(r'^restaurant/', include(res_urls)),
+
+    url(r'^populate/$', website_views.populate, name='populate'),
 ]
