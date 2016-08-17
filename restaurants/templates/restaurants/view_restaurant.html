@@ -17,6 +17,9 @@
     </a><br /><br />
     {% for review in reviews %}
         <div style="margin-left: 2em;">
+            {% if review.member.username == user.username %}
+                &#x2713;
+            {% endif %}
             {{ review.member.username }} says:<br />
             {{ review.comment }}<br /><br />
         </div>

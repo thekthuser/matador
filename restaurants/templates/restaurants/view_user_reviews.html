@@ -3,6 +3,9 @@
 {% block content %}
     {% for review in reviews %}
         <div style="margin-left: 2em;">
+            {% if review.member.username == user.username %}
+                &#x2713;
+            {% endif %}
             {{ review.member.username }} says about {{ review.restaurant.name }}:<br />
             {{ review.comment }}<br /><br />
         </div>
