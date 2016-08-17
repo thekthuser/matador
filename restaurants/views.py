@@ -53,11 +53,13 @@ def add_review(request, pk):
     return render(request, 'restaurants/add_review.html', {'form': form, 'pk': pk})
 
 @login_required(login_url = reverse_lazy('login'))
-def view_user_reviews(request, pk):
-    reviews = Review.objects.all().filter(member=pk)
+#view reviews for logged in user
+def view_user_reviews(request):
+    reviews = Review.objects.all().filter(member=request.user.id)
     return render(request, 'restaurants/view_user_reviews.html', {'reviews': reviews})
 
 @login_required(login_url = reverse_lazy('login'))
-def view_user_restaurants(request, pk):
-    res = Restaurant.objects.all().filter(Q(review__member=pk))
+#view restaurants for logged in user
+def view_user_restaurants(request):
+    res = Restaurant.objects.all().filter(Q(review__member=request.user.id))
     return render(request, 'restaurants/view_user_restaurants.html', {'restaurants': res})
