@@ -8,8 +8,6 @@ from django.db.models import Q
 from website.views import user_is_connoisseur
 from django.contrib.auth.decorators import user_passes_test
 
-# Create your views here.
-
 #only logged in connoisseurs can add restaurants
 @user_passes_test(user_is_connoisseur, login_url = reverse_lazy('login'))
 def add_restaurant(request):

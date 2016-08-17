@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from teams.forms import EditMemberForm, AddTeamForm
 
-# Create your views here.
 @login_required(login_url = reverse_lazy('login'))
 def edit_member(request):
     if request.method == 'POST':

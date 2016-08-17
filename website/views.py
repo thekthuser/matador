@@ -25,5 +25,6 @@ def index(request):
     res_count = Restaurant.objects.all().filter(Q(review__member=request.user.id)).count()
     return render(request, 'website/index.html', {'review_count': review_count, 'res_count': res_count})
 
+#used to test if a user is authorized to add a new restaurant
 def user_is_connoisseur(user):
     return user.is_authenticated() and user.connoisseur
