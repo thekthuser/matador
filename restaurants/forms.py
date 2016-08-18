@@ -20,7 +20,7 @@ class AddRestaurantForm(ModelForm):
         geolocator = Nominatim()
         # .geocode returns None if address not found, but sometimes still geocodes bad addresses
         # for example, it thinks the address 'bad address' is in dubai...
-        loc = geolocator.geocode(res.address)
+        loc = geolocator.geocode(res.address, timeout=None)
         if loc:
             res.latlon = str(loc.latitude) + ',' + str(loc.longitude)
         else:
