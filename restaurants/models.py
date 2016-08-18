@@ -7,7 +7,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
     description = models.CharField(max_length=255, blank=True)
     address = models.CharField(max_length=255, blank=True)
-    latlon = models.CharField(max_length=255, blank=False, null=True)
+    latlon = models.CharField(max_length=255, blank=True, null=True)
 
 class Review(models.Model):
     restaurant = models.ForeignKey(Restaurant, blank=False)
