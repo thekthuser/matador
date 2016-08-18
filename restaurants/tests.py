@@ -28,12 +28,13 @@ class RestaurantFormsTestCase(TestCase):
         res = Restaurant.objects.get(name='Res1')
         member = Member.objects.get(username='defaultMember')
 
-        review_form_data = {'restaurant': res, 'member': member, 'comment': 'Test comment.', \
+        review_form_data = {'comment': 'Test comment.', \
             'disliked': False, 'team': member.team}
-        review = AddReviewForm(review_form_data)
-        review.save()
+        review = AddReviewForm(review_form_data, restaurant=res, member=member)
+        if review.is_valid():
+            review.save()
 
         review = Review.objects.get(restaurant=res)
         self.assertEqual(review.comment, 'Test comment.')
-
+        self.assertFalse(review.disliked)
 
