@@ -39,15 +39,16 @@ def populate(request):
     mystic.save()
     instinct.save()
 
-    defaultMember = Member(username='defaultMember', password='qwerty', phone='555-5555', \
-        email='default@example.com', connoisseur=True, team=valor.id)
+    defaultMember = Member(username='defaultMember', password='', phone='555-5555', \
+        email='default@example.com', connoisseur=True, team=valor)
+    defaultMember.set_password('qwerty')
     defaultMember.save()
 
     shack = Restaurant(name='Shake Shack', description='Burgers.', \
         address='Grand Central Terminal, New York, NY 10017', latlon='40.7527233,-73.977262304')
     shack.save()
 
-    shackReview = Review(restaurant=shack.id, member=defaultMember.id, comment='Long lines.', \
+    shackReview = Review(restaurant=shack, member=defaultMember, comment='Long lines.', \
         disliked=False, team=valor.name)
     shackReview.save()
 
