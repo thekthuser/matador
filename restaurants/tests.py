@@ -8,7 +8,8 @@ class RestaurantFormsTestCase(TestCase):
         res_form_data = {'name': 'Res1', 'description': 'This is Res1.', 'address': \
             'Grand Central Terminal, New York, NY 10017'}
         resForm = AddRestaurantForm(res_form_data)
-        resForm.save()
+        if resForm.is_valid():
+            resForm.save()
 
         valor = Team(name='Team Valor', description='Red team in Pokemon Go.')
         valor.save()

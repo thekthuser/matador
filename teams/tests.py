@@ -30,14 +30,16 @@ class TeamsFormsTestCase(TestCase):
     def setUp(self):
         team_form_data = {'name': 'Team Mystic', 'description': 'Blue team in Pokemon Go.'}
         teamForm = AddTeamForm(team_form_data)
-        teamForm.save()
+        if teamForm.is_valid():
+            teamForm.save()
 
         mystic = Team.objects.get(name='Team Mystic')
         register_form_data = {'username': 'mysticMember', 'phone': '555-5555', 'email': \
                 'mystic@example.com', 'connoisseur': True, 'team': mystic.id, \
                 'password1': 'qwertyqwerty', 'password2': 'qwertyqwerty'}
         registerForm = RegisterForm(register_form_data)
-        registerForm.save()
+        if registerForm.is_valid():
+            registerForm.save()
 
     def test_team_form(self):
         mystic = Team.objects.get(name='Team Mystic')
