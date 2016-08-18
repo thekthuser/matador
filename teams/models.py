@@ -19,7 +19,7 @@ class Member(AbstractBaseUser):
     username = models.CharField(max_length=255, unique=True, blank=False)
     password = models.CharField(max_length=255, blank=False)
     phone = models.CharField(max_length=255, blank=True)
-    email = models.CharField(max_length=255, unique=True, blank=False)
+    email = models.EmailField(max_length=255, unique=True, blank=False)
     #connoisseur status allows adding new restaurants
     connoisseur = models.BooleanField(default=False)
     team = models.ForeignKey(Team)
