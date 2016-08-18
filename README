@@ -1,0 +1,13 @@
+README
+
+This is a short restaurant review project written in Django.
+
+Multiple teams of restaurant goers are supported. If any individual team member dislikes a restaurant in a review, that restaurant will stop being displayed for all members of that team. Anyone can review a restaurant, but only connoisseurs are allowed to enter a new one.
+
+The Python modules 'geopy' and 'psycopg2' are required. The project uses Postgres, so make sure to create an empty schema, with the credentials in dev_settings.py before trying to run the app. I had some issues starting the project with those credentials, but those issues were in my system's setup, not the project.
+
+Visiting the path '/populate/' will populate the database with starter data and allow a fresh install to run. Visit it first thing after migrating and starting the project for the first time.
+
+Passwords must be 8 characters or more.
+
+Geopy is not the most reliable geocoder, but I thought it sufficient for this project. .geocode returns None if the address is not found, but sometimes still geocodes bad addresses. For example, it thinks the address 'bad address' is in Dubai. Individual restaurant pages will display a map if geocoding is successful.
