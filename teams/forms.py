@@ -27,6 +27,9 @@ class RegisterForm(UserCreationForm):
 
 class EditMemberForm(ModelForm):
 
+    email = forms.EmailField(required=False)
+    phone = forms.CharField(required=False)
+
     class Meta:
         model = Member
         fields = ['email', 'phone']
@@ -38,8 +41,10 @@ class EditMemberForm(ModelForm):
 
     def save(self, commit=True):
         member = Member.objects.get(pk=self.user.id)
-        member.email = self.cleaned_data.get('email')
-        member.phone = self.cleaned_data.get('phone')
+        if self.cleaned_data.get('email'):
+            member.email = self.cleaned_data.get('email')
+        if self.cleaned_data.get('phone'):
+            member.phone = self.cleaned_data.get('phone')
 
         if commit:
             member.save()
