@@ -4,7 +4,9 @@
 {% block content %}
     {% for res in restaurants %}
         <div style="margin-left: 2em;">
-            {{ res.name }}, located at {{ res.address }}<br />
+            <a href="{% url 'view_restaurant' pk=res.id %}">
+                {{ res.name }}
+            </a>, located at {{ res.address }}<br />
             {{ res.description }}<br /><br />
         </div>
     {% endfor %}
