@@ -37,4 +37,6 @@ class RestaurantFormsTestCase(TestCase):
         review = Review.objects.get(restaurant=res)
         self.assertEqual(review.comment, 'Test comment.')
         self.assertFalse(review.disliked)
+        self.assertEqual(review.restaurant, res)
+        self.assertEqual(review.member, member)
 
