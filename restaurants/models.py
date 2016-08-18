@@ -12,7 +12,7 @@ class Restaurant(models.Model):
 class Review(models.Model):
     restaurant = models.ForeignKey(Restaurant, blank=False)
     member = models.ForeignKey(Member, blank=False)
-    comment = models.TextField(unique=True, blank=True)
+    comment = models.TextField(unique=True, blank=False)
     disliked = models.BooleanField(default=False)
     team = models.CharField(max_length=255, blank=False)
     datetime = models.DateTimeField(auto_now=True)
